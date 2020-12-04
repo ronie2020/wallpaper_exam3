@@ -1,17 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:wallpaper/model/wallpaper_model.dart';
+import 'package:wallpaper/views/image_view.dart';
 
-Widget brandName() {  
-  return RichText(    
-  text: TextSpan(    
-    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-    children: <TextSpan>[
-      TextSpan(text: 'Wallpaper', style: TextStyle(color: Colors.black87)),
-      TextSpan(text: 'App', style: TextStyle(color: Colors.blue)),      
-    ],     
-  ),
-);
+Widget brandName() {
+  return RichText(
+    text: TextSpan(
+      style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+      children: <TextSpan>[
+        TextSpan(text: 'Wallpaper', style: TextStyle(color: Colors.black87)),
+        TextSpan(text: 'App', style: TextStyle(color: Colors.blue)),
+      ],
+    ),
+  );
 }
 
 Widget wallpaperList({List<WallpaperModel> wallpaper, context}) {
@@ -26,14 +27,26 @@ Widget wallpaperList({List<WallpaperModel> wallpaper, context}) {
       crossAxisSpacing: 6.0,
       children: wallpaper.map((wallpaper) {
         return GridTile(
-          child: Container(
-              child: ClipRRect(
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ImageView(
+                    imgUrl: wallpaper.src.portrait,
+                  )
+                  ));
+            },
+            child: Hero(
+              tag: wallpaper.src.portrait,
+              child: Container(
+                  child: ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-            child: Image.network(
-              wallpaper.src.portrait,
-              fit: BoxFit.cover,
+                child: Image.network(
+                  wallpaper.src.portrait,
+                  fit: BoxFit.cover,
+                ),
+              )),
             ),
-          )),
+          ),
         );
       }).toList(),
     ),

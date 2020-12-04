@@ -7,6 +7,7 @@ import 'package:wallpaper/data/data.dart';
 import 'package:wallpaper/model/categories_model.dart';
 import 'package:wallpaper/model/wallpaper_model.dart';
 import 'package:wallpaper/views/categorie.dart';
+import 'package:wallpaper/views/image_view.dart';
 import 'package:wallpaper/views/search.dart';
 import 'package:wallpaper/widgets/widget.dart';
 
@@ -80,9 +81,10 @@ class _HomeState extends State<Home> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Search(
-                            searchQuery: searchController.text,
-                          )),
+                          MaterialPageRoute(
+                              builder: (context) => Search(
+                                    searchQuery: searchController.text,
+                                  )),
                         );
                       },
                       child: Container(child: Icon(Icons.search)),
@@ -126,11 +128,14 @@ class CategoriesTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(
-          builder: (context) => Categories(categorieName: title.toLowerCase(),)));
-
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Categories(
+                      categorieName: title.toLowerCase(),
+                    )));
       },
-          child: Container(
+      child: Container(
         margin: EdgeInsets.symmetric(horizontal: 3),
         child: Stack(
           children: <Widget>[
