@@ -33,26 +33,47 @@ class _ImageViewState extends State<ImageView> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
+                  width: MediaQuery.of(context).size.width / 2,
+                  padding: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
                   decoration: BoxDecoration(
+                      border: Border.all(color: Colors.white54, width: 1),
+                      borderRadius: BorderRadius.circular(15),
                       gradient: LinearGradient(colors: [
-                    Color(0x36ffffff),
-                    Color(0x0fffffff),
-                  ])),
+                        Color(0x36ffffff),
+                        Color(0x0fffffff),
+                      ])),
                   child: Column(
                     children: <Widget>[
-                      Text('Set As Wallpaper ?'),
-                      Text('Image will be save in gallery')
+                      Text(
+                        'Set As Wallpaper ?',
+                        style: TextStyle(
+                            fontSize: 16,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        'Image will be save in gallery',
+                        style: TextStyle(
+                            fontSize: 12,
+                            color: Colors.white70,
+                            fontWeight: FontWeight.bold),
+                      ),
                     ],
                   ),
                 ),
+                SizedBox(
+                  height: 5,
+                ),
                 Text(
-                  'cancel',
+                  'Cancel',
                   style: TextStyle(color: Colors.white),
-                )
+                ),
+                SizedBox(
+                  height: 40,
+                ),
               ],
             ),
           ),
-          SizedBox(height: 50,),
         ],
       ),
     );
